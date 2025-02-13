@@ -41,3 +41,20 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ['appointment_date']
+
+from django.db import models
+
+class Appointment(models.Model):
+    SERVICE_CHOICES = [
+        ('Exterior Wash', 'Exterior Wash'),
+        ('Full Interior Cleaning', 'Full Interior Cleaning'),
+        ('Car Detailing', 'Car Detailing'),
+    ]
+    
+    name = models.CharField(max_length=255)
+    service = models.CharField(max_length=255, choices=SERVICE_CHOICES)
+    date = models.DateTimeField()
+
+    def __str__(self):
+        return f"Appointment for {self.name} - {self.service} on {self.date}"
+

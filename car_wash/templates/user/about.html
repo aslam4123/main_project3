@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book an Appointment</title>
+    <title>About Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+            margin-left: 250px; /* Adjust the left margin to offset the sidebar */
+            padding: 50px;
         }
 
-/* Sidebar container */
+        /* Sidebar container */
         .sidebar {
             height: 100vh;
             width: 250px;
@@ -79,71 +79,70 @@
             .sidebar a {
                 font-size: 16px;
             }
+            body {
+                margin-left: 200px; /* Adjust content margin for smaller sidebar width */
+            }
         }
 
-        .container {
-            margin-top: 100px;
-            max-width: 600px;
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        h2 {
+        .section-header h2 {
+            font-size: 2.5rem;
             font-weight: 600;
             color: #2C3E50;
-            margin-bottom: 30px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .about-content .text {
+            width: 60%;
+            padding-right: 20px;
+        }
+
+        .about-content .image {
+            width: 35%;
             text-align: center;
         }
 
-        .card {
-            background-color: #ffffff;
+        .about-content img {
+            max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
         }
 
-        .form-group label {
-            font-weight: 500;
-            color: #2C3E50;
-        }
-
-        .form-control {
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            font-size: 16px;
-            background-color: #f9f9f9;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-primary {
+        .btn-back {
             background-color: #3498db;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 20px;
             color: white;
             font-size: 16px;
             font-weight: 600;
             text-transform: uppercase;
             border-radius: 25px;
-            transition: background-color 0.3s ease;
+            margin-top: 30px;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
 
-        .btn-primary:hover {
+        .btn-back:hover {
             background-color: #2980b9;
-        }
-
-        .btn-secondary {
-            background-color: #e74c3c;
-            border: none;
-            padding: 12px 30px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            border-radius: 25px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background-color: #c0392b;
         }
     </style>
 </head>
@@ -153,38 +152,35 @@
         <div class="navbar-brand">C WASH</div>
         <a href="/user_home">Home</a>
         <a href="/services">Services</a>
-        <a href="/#">Booking</a>
+        <a href="/book_appointment">Booking</a>
         <a href="/view_appointments">Booking Details</a>
-        <a href="/about">About</a>
+        <a href="#">About</a>
         <a href="/contact">Contact</a>
         <a href="/shp_logout">Logout</a>
     </div>
 
+    <!-- About Section -->
     <div class="container">
-        <h2>Book Your Car Wash Appointment</h2>
-        <div class="card">
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="service">Select Service</label>
-                    <select class="form-control" id="service" name="service" required>
-                        <option value="Exterior Wash">Exterior Wash</option>
-                        <option value="Full Interior Cleaning">Full Interior Cleaning</option>
-                        <option value="Car Detailing">Car Detailing</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="date">Select Date & Time</label>
-                    <input type="datetime-local" class="form-control" id="date" name="date" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Book Appointment</button>
-            </form>
+        <div class="section-header">
+            <h2>About Us</h2>
+            <p>We are committed to providing the best car wash and detailing services in town. Our goal is to ensure your car looks brand new and stays spotless!</p>
         </div>
+
+        <!-- About Content (Text + Image) -->
+        <div class="about-content">
+            <div class="text">
+                <p>At Car Wash Services, we are a passionate team dedicated to delivering top-notch car washing and detailing services. We believe in quality, efficiency, and customer satisfaction. Our services are tailored to keep your car in pristine condition, both inside and out. From exterior washes to interior cleaning, we provide everything your car needs to look its best.</p>
+                <p>We take pride in using eco-friendly products and the latest techniques to offer an outstanding service to our customers. With a skilled and friendly team, we are here to make your car shine and bring a smile to your face.</p>
+            </div>
+            <div class="image">
+                <img src="../../static/bmw.jpg" alt="Car Wash Team">
+            </div>
+        </div>
+
+        <!-- Button to go back to the home page -->
+        <a href="/user_home" class="btn-back">Back to Home</a>
     </div>
 
 </body>
 </html>
+

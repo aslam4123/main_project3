@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Reuse the existing styles */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
@@ -16,12 +17,11 @@
             flex-direction: row;
         }
 
-        /* Sidebar Navbar */
-       /* Sidebar container */
+        /* Sidebar container */
         .sidebar {
             height: 100vh;
             width: 250px;
-            background-color: #2C3E50; /* Dark blue-gray */
+            background-color: #2C3E50;
             color: #fff;
             position: fixed;
             top: 0;
@@ -34,7 +34,6 @@
             box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Brand Text Style */
         .navbar-brand {
             font-size: 24px;
             font-weight: bold;
@@ -50,7 +49,6 @@
             color: #3498db;
         }
 
-        /* Sidebar Links */
         .sidebar a {
             text-decoration: none;
             color: #bdc3c7;
@@ -68,59 +66,17 @@
             border-left: 4px solid #fff;
         }
 
-        /* Add subtle hover effect on sidebar links */
         .sidebar a:active {
             background-color: #2980b9;
             transform: translateX(5px);
         }
 
-        /* Optional: add responsive design for mobile view */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-            .sidebar a {
-                font-size: 16px;
-            }
-        }
-
-
-        /* Main content area */
         .main-content {
             margin-left: 250px;
             padding: 30px;
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero-section {
-            background-image: url(../../static/wash1.jpg);
-            background-size: cover;
-            height: 450px;
-            color: white;
-            text-align: center;
-            padding: 120px 0;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-        }
-
-        .hero-section .btn-primary {
-            background-color: #2C3E50;;
-            border-color: #2C3E50;
-            opacity: .7;
-            padding: 12px 30px;
-            font-size: 1rem;
-        }
-
-        /* Services Section */
         .services-section {
             padding: 70px 0;
         }
@@ -164,7 +120,6 @@
             font-size: 1rem;
         }
 
-        /* Footer Section */
         .footer {
             background-color: #333;
             color: white;
@@ -183,21 +138,7 @@
             color: #007bff;
         }
 
-        /* Media Queries for Mobile View */
         @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .services-section .row {
-                flex-direction: column;
-            }
-
-            .service-card {
-                margin-bottom: 20px;
-            }
-
-            /* Collapse the sidebar for mobile */
             .sidebar {
                 width: 100%;
                 height: auto;
@@ -215,9 +156,9 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="navbar-brand">C WASH</div>
-        <a href="#">Home</a>
-        <a href="/services">Services</a>
-        <a href="/book_appointment">Booking</a>
+        <a href="/user_home">Home</a>
+        <a href="#">Services</a>
+        <a href="/book_appointment">Bookings</a>
         <a href="/view_appointments">Booking Details</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
@@ -226,53 +167,64 @@
 
     <!-- Main Content -->
     <div class="main-content">
-
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <h1>Welcome to Our Car Wash Service</h1>
-            <p>Experience the best car wash and detailing services in town</p>
-            <a href="#services" class="btn btn-primary">Explore Our Services</a>
-        </div>
-
+        
         <!-- Services Section -->
         <div class="container services-section" id="services">
-            <h2 class="text-center mb-4">Our Services</h2>
+            <h2 class="text-center mb-4">Our Premium Car Wash Services</h2>
             <div class="row">
+                <!-- Service Card 1 -->
                 <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <img src="../../static/exterior.jpg" alt="Exterior Wash">
                         <div class="card-body">
                             <h5 class="card-title">Exterior Wash</h5>
-                            <p class="card-text">A thorough exterior wash, leaving your car looking spotless.</p>
+                            <p class="card-text">A thorough exterior wash that cleans every inch of your vehicle, leaving it sparkling.</p>
+                     
                         </div>
                     </div>
                 </div>
+                
+                <!-- Service Card 2 -->
                 <div class="col-md-4 mb-4">
                     <div class="service-card">
-                        <img src="../../static/interior.jpg" alt="Full Interior Cleaning">
+                        <img src="../../static/interior.jpg" alt="Interior Cleaning">
                         <div class="card-body">
                             <h5 class="card-title">Full Interior Cleaning</h5>
-                            <p class="card-text">Clean and sanitize your car's interior, including upholstery and dashboard.</p>
+                            <p class="card-text">Complete cleaning of your car's interior, including vacuuming, upholstery cleaning, and sanitization.</p>
+                            
                         </div>
                     </div>
                 </div>
+
+                <!-- Service Card 3 -->
                 <div class="col-md-4 mb-4">
                     <div class="service-card">
                         <img src="../../static/ceramic.jpg" alt="Detailing">
                         <div class="card-body">
                             <h5 class="card-title">Car Detailing</h5>
-                            <p class="card-text">Comprehensive detailing that restores your car to showroom condition.</p>
+                            <p class="card-text">Comprehensive detailing that restores your car to its showroom shine, inside and out.</p>
+                            
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Optional: Additional services -->
+            <div class="text-center mt-5">
+                <p>We offer a range of services tailored to meet the specific needs of your vehicle. From exterior washes to full detailing, we ensure your car looks its best!</p>
             </div>
         </div>
 
         <!-- Footer Section -->
         <div class="footer">
             <p>&copy; 2025 Car Wash Services. All Rights Reserved.</p>
+            <p>Follow us on:
+                <a href="#" class="text-white"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter-square"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-instagram-square"></i></a>
+            </p>
         </div>
-        
+
     </div>
 
     <!-- JS & Bootstrap JS -->
@@ -282,5 +234,3 @@
 
 </body>
 </html>
-
-

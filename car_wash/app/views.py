@@ -91,6 +91,67 @@ def register(req):
 def user_home(request):
     return render(request, 'user/home.html')
 
+def services(request):
+    # Here we can add data to be passed into the context if necessary for dynamic content
+    return render(request, 'user/services.html')  
+
 # Book Appointment Page
+from django.shortcuts import render, redirect
+from .models import Appointment
+from django.http import HttpResponse
+
 def book_appointment(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        service = request.POST.get('service')
+        date = request.POST.get('date')
+
+        # Create a new appointment
+        Appointment.objects.create(
+            name=name,
+            service=service,
+            date=date
+        )
+
+        return redirect('appointment_success')  # Redirect to success page or confirmation message
+
     return render(request, 'user/book_appointment.html')
+
+def appointment_success(request):
+    return render(request, 'user/appointment_success.html')
+
+from django.shortcuts import render
+from .models import Appointment
+
+def view_appointments(request):
+    # Get all appointments from the database
+    appointments = Appointment.objects.all().order_by('-date')  # Orders by date, with the most recent first
+    return render(request, 'user/view_appointments.html', {'appointments': appointments})
+
+
+def about(request):
+    return render(request, 'user/about.html')
+
+
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        # Here you can add code to send an email or store the message in the database
+        # Example email sending:
+        send_mail(
+            f"Message from {name}",
+            message,
+            email,
+            ['your_email@example.com'],  # Your email address to receive the form messages
+            fail_silently=False,
+        )
+        return render(request, 'user/contact.html', {'message_sent': True})
+    return render(request, 'user/contact.html')
+
