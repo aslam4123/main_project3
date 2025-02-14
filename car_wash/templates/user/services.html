@@ -7,38 +7,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Reuse the existing styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #f7f7f7, #e2e2e2);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: row;
         }
 
-        /* Sidebar container */
         .sidebar {
             height: 100vh;
             width: 250px;
-            background-color: #2C3E50;
+            background: linear-gradient(135deg, #2C3E50, #34495E);
             color: #fff;
             position: fixed;
             top: 0;
             left: 0;
-            padding-top: 20px;
+            padding-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.3);
         }
 
         .navbar-brand {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             color: #ecf0f1;
             text-transform: uppercase;
             text-align: center;
@@ -53,17 +50,19 @@
             text-decoration: none;
             color: #bdc3c7;
             font-size: 18px;
-            padding: 15px 25px;
+            padding: 20px;
             width: 100%;
             text-align: center;
-            transition: all 0.3s ease;
             border-bottom: 1px solid #34495e;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
         .sidebar a:hover {
             background-color: #3498db;
             color: white;
-            border-left: 4px solid #fff;
+            border-left: 5px solid #fff;
         }
 
         .sidebar a:active {
@@ -75,49 +74,64 @@
             margin-left: 250px;
             padding: 30px;
             width: 100%;
+            background-color: #fff;
         }
 
         .services-section {
-            padding: 70px 0;
+            padding: 100px 0;
         }
 
         .service-card {
             background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
         .service-card img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.1);
         }
 
         .service-card .card-body {
-            padding: 20px;
+            padding: 25px;
         }
 
         .service-card h5 {
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
         }
 
         .service-card p {
-            font-size: 1rem;
-            color: #666666;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
         }
 
         .service-card .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
-            padding: 10px 20px;
-            font-size: 1rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .service-card .btn-primary:hover {
+            background-color: #0056b3;
         }
 
         .footer {
@@ -130,12 +144,22 @@
 
         .footer a {
             color: white;
-            font-size: 1.5rem;
-            margin: 0 15px;
+            font-size: 1.8rem;
+            margin: 0 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer a:hover {
-            color: #007bff;
+            color: #3498db;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            color: #e74c3c;
+            font-weight: 700;
+            margin-top: 15px;
+            display: inline-block;
         }
 
         @media (max-width: 768px) {
@@ -147,6 +171,18 @@
 
             .main-content {
                 margin-left: 0;
+            }
+
+            .service-card {
+                margin-bottom: 30px;
+            }
+
+            .service-card h5 {
+                font-size: 1.4rem;
+            }
+
+            .service-card .price {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -170,7 +206,7 @@
         
         <!-- Services Section -->
         <div class="container services-section" id="services">
-            <h2 class="text-center mb-4">Our Premium Car Wash Services</h2>
+            <h2 class="text-center mb-5" style="font-size: 2.5rem; color: #2c3e50; font-weight: 700;">Our Premium Car Wash Services</h2>
             <div class="row">
                 <!-- Service Card 1 -->
                 <div class="col-md-4 mb-4">
@@ -179,7 +215,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Exterior Wash</h5>
                             <p class="card-text">A thorough exterior wash that cleans every inch of your vehicle, leaving it sparkling.</p>
-                     
+                            <div class="price">$2000</div>
                         </div>
                     </div>
                 </div>
@@ -191,7 +227,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Full Interior Cleaning</h5>
                             <p class="card-text">Complete cleaning of your car's interior, including vacuuming, upholstery cleaning, and sanitization.</p>
-                            
+                            <div class="price">$3000</div>
                         </div>
                     </div>
                 </div>
@@ -203,7 +239,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Car Detailing</h5>
                             <p class="card-text">Comprehensive detailing that restores your car to its showroom shine, inside and out.</p>
-                            
+                            <div class="price">$50000</div>
                         </div>
                     </div>
                 </div>
@@ -211,26 +247,20 @@
 
             <!-- Optional: Additional services -->
             <div class="text-center mt-5">
-                <p>We offer a range of services tailored to meet the specific needs of your vehicle. From exterior washes to full detailing, we ensure your car looks its best!</p>
+                <p style="font-size: 1.2rem; color: #7f8c8d;">We offer a range of services tailored to meet the specific needs of your vehicle. From exterior washes to full detailing, we ensure your car looks its best!</p>
             </div>
         </div>
 
         <!-- Footer Section -->
         <div class="footer">
             <p>&copy; 2025 Car Wash Services. All Rights Reserved.</p>
-            <p>Follow us on:
-                <a href="#" class="text-white"><i class="fab fa-facebook-square"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-twitter-square"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-instagram-square"></i></a>
-            </p>
+            <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms & Conditions</a>
         </div>
 
     </div>
 
     <!-- JS & Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

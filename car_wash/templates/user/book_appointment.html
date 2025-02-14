@@ -14,7 +14,7 @@
             padding: 0;
         }
 
-/* Sidebar container */
+        /* Sidebar container */
         .sidebar {
             height: 100vh;
             width: 250px;
@@ -69,16 +69,6 @@
         .sidebar a:active {
             background-color: #2980b9;
             transform: translateX(5px);
-        }
-
-        /* Optional: add responsive design for mobile view */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-            .sidebar a {
-                font-size: 16px;
-            }
         }
 
         .container {
@@ -149,7 +139,8 @@
 </head>
 <body>
 
-    <div class="sidebar">
+    <!-- Sidebar and content... -->
+    <div class="sidebar" id="sidebar">
         <div class="navbar-brand">C WASH</div>
         <a href="/user_home">Home</a>
         <a href="/services">Services</a>
@@ -162,12 +153,25 @@
 
     <div class="container">
         <h2>Book Your Car Wash Appointment</h2>
+
+        {% if messages %}
+        <div class="alert alert-warning">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="card">
-            <form method="post">
+            <form method="post" id="booking-form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="service">Select Service</label>
@@ -180,11 +184,27 @@
                 <div class="form-group">
                     <label for="date">Select Date & Time</label>
                     <input type="datetime-local" class="form-control" id="date" name="date" required>
+                    <span id="error-message" style="color:red;"></span>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Book Appointment</button>
             </form>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#date').on('change', function() {
+                var selectedDate = $(this).val();
+                
+               
+            });
+        });
+    </script>
 
 </body>
 </html>

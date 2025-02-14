@@ -134,6 +134,22 @@
         .btn-back:hover {
             background-color: #2980b9;
         }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -156,20 +172,30 @@
         <thead>
             <tr>
                 <th>Customer Name</th>
+                <th>Email</th>
                 <th>Service</th>
                 <th>Booking Date & Time</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for appointment in appointments %}
                 <tr>
                     <td>{{ appointment.name }}</td>
+                    <td>{{ appointment.email }}</td>
                     <td>{{ appointment.service }}</td>
                     <td>{{ appointment.date|date:"F j, Y, g:i A" }}</td>
+                    <td>
+                        <!-- Delete button form -->
+                        <form action="{% url 'delete_appointment' appointment.id %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete">Cancel</button>
+                        </form>
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="3">No appointments found.</td>
+                    <td colspan="5">No appointments found.</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -180,4 +206,6 @@
 
 </body>
 </html>
+
+
 

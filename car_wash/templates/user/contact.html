@@ -11,13 +11,12 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f4f4f9;
             padding: 50px;
-            margin-left: 250px; /* Add margin-left to push content to the right */
+            margin-left: 250px;
         }
-        /* Sidebar container */
         .sidebar {
             height: 100vh;
             width: 250px;
-            background-color: #2C3E50; /* Dark blue-gray */
+            background-color: #2C3E50;
             color: #fff;
             position: fixed;
             top: 0;
@@ -30,7 +29,6 @@
             box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Brand Text Style */
         .navbar-brand {
             font-size: 24px;
             font-weight: bold;
@@ -42,11 +40,6 @@
             transition: all 0.3s ease;
         }
 
-        .navbar-brand:hover {
-            color: #3498db;
-        }
-
-        /* Sidebar Links */
         .sidebar a {
             text-decoration: none;
             color: #bdc3c7;
@@ -62,44 +55,6 @@
             background-color: #3498db;
             color: white;
             border-left: 4px solid #fff;
-        }
-
-        /* Add subtle hover effect on sidebar links */
-        .sidebar a:active {
-            background-color: #2980b9;
-            transform: translateX(5px);
-        }
-
-        /* Optional: add responsive design for mobile view */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-            .sidebar a {
-                font-size: 16px;
-            }
-            body {
-                margin-left: 200px; /* Adjust content margin for smaller sidebar width */
-            }
-        }
-
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #2C3E50;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         .contact-form {
@@ -136,32 +91,6 @@
         .btn-primary:hover {
             background-color: #2980b9;
         }
-
-        .contact-info {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            color: #2C3E50;
-        }
-
-        .contact-info p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-        }
-
-        .contact-info .social-icons a {
-            font-size: 1.5rem;
-            color: #2C3E50;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info .social-icons a:hover {
-            color: #3498db;
-        }
     </style>
 </head>
 <body>
@@ -177,43 +106,22 @@
     </div>
 
     <div class="container">
-        <!-- Contact Us Section Header -->
-        <div class="section-header">
-            <h2>Contact Us</h2>
-            <p>We'd love to hear from you! Reach out to us for any inquiries, feedback, or to book an appointment.</p>
-        </div>
+        <h2>Contact Us</h2>
 
-        <!-- Contact Form -->
+        {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="contact-form">
             <form method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                </div>
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
-        </div>
-
-        <!-- Contact Info Section -->
-        <div class="contact-info">
-            <h3>Visit Us or Follow Us</h3>
-            <p>If you'd like to speak to someone in person or follow us on social media, here are our details:</p>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" class="fab fa-facebook-square"></a>
-                <a href="https://twitter.com" target="_blank" class="fab fa-twitter-square"></a>
-                <a href="https://instagram.com" target="_blank" class="fab fa-instagram-square"></a>
-            </div>
-            <p>Address: 123 Car Wash Lane, City, State, ZIP</p>
-            <p>Phone: (123) 456-7890</p>
         </div>
     </div>
 

@@ -10,37 +10,75 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin-left: 250px; /* Add left margin to offset sidebar */
+            transition: margin-left 0.3s ease;
+        }
+        /* Sidebar */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #2C3E50;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover {
+            color: #3498db;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #bdc3c7;
+            font-size: 18px;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #34495e;
+        }
+        .sidebar a:hover {
+            background-color: #3498db;
+            color: white;
+            border-left: 4px solid #fff;
+        }
+        .sidebar a:active {
+            background-color: #2980b9;
+            transform: translateX(5px);
         }
 
+        /* Hero Section */
         .hero-section {
-            background-image: url();
-            /* height: 400px; */
+            background-image: url(../../static/bmw.jpg);
+            background-size: cover;
+            height: 600px;
             color: white;
             text-align: center;
             padding: 100px 0;
         }
 
+        /* Services Section */
         .services-section {
             padding: 50px 0;
         }
 
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .service-card .card-body {
-            padding: 20px;
-        }
-
+        /* Footer Section */
         .footer {
             background-color: #333;
             color: white;
@@ -48,39 +86,44 @@
             padding: 30px 0;
         }
 
+        /* Button Styles */
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
         }
+
+        /* Adjust for mobile views */
+        @media (max-width: 768px) {
+            body {
+                margin-left: 0; /* Remove the left margin for smaller screens */
+            }
+            .sidebar {
+                width: 100%; /* Sidebar becomes full-width on mobile */
+                height: auto; /* Remove fixed height */
+                position: static; /* Sidebar becomes static */
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .sidebar a {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            .hero-section {
+                height: 500px;
+                padding: 50px 0;
+            }
+        }
     </style>
 </head>
 <body>
-     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Car Wash Services</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/shp_logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="navbar-brand">C WASH</div>
+        <a href="#" class="active"><i class="fas fa-home"></i> Home</a>  
+        <a href="/view_bookings"><i class="fas fa-list"></i> Booking Details</a>       
+        <a href="/shp_logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
 
     <!-- Hero Section -->
     <div class="hero-section">
@@ -90,55 +133,26 @@
     </div>
 
     <!-- Services Section -->
-    <div class="container services-section" id="services">
-        <h2 class="text-center mb-4">Our Services</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="service-card">
-                    <img src="https://via.placeholder.com/500x300" alt="Exterior Wash">
-                    <div class="card-body">
-                        <h5 class="card-title">Exterior Wash</h5>
-                        <p class="card-text">A thorough exterior wash, leaving your car looking spotless.</p>
-                        <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="service-card">
-                    <img src="https://via.placeholder.com/500x300" alt="Full Interior Cleaning">
-                    <div class="card-body">
-                        <h5 class="card-title">Full Interior Cleaning</h5>
-                        <p class="card-text">Clean and sanitize your car's interior, including upholstery and dashboard.</p>
-                        <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="service-card">
-                    <img src="https://via.placeholder.com/500x300" alt="Detailing">
-                    <div class="card-body">
-                        <h5 class="card-title">Car Detailing</h5>
-                        <p class="card-text">Comprehensive detailing that restores your car to showroom condition.</p>
-                        <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="services" class="services-section">
+        <!-- Your services content goes here -->
     </div>
 
     <!-- Footer Section -->
     <div class="footer">
         <p>&copy; 2025 Car Wash Services. All Rights Reserved.</p>
-        <p>Follow us on:
-            <a href="#" class="text-white"><i class="fab fa-facebook-square"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-twitter-square"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-instagram-square"></i></a>
-        </p>
     </div>
 
     <!-- JS & Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Enable Tooltip -->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>
+

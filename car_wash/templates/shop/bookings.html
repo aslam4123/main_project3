@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Appointments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            margin-left: 250px; /* Add left margin to offset sidebar */
+            padding: 50px;
+        }
+
+        /* Sidebar container */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #2C3E50; /* Dark blue-gray */
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Brand Text Style */
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #3498db;
+        }
+
+        /* Sidebar Links */
+        .sidebar a {
+            text-decoration: none;
+            color: #bdc3c7;
+            font-size: 18px;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .sidebar a:hover {
+            background-color: #3498db;
+            color: white;
+            border-left: 4px solid #fff;
+        }
+
+        /* Add subtle hover effect on sidebar links */
+        .sidebar a:active {
+            background-color: #2980b9;
+            transform: translateX(5px);
+        }
+
+        /* Optional: add responsive design for mobile view */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .sidebar a {
+                font-size: 16px;
+            }
+            body {
+                margin-left: 200px; /* Adjust content margin for smaller sidebar width */
+            }
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #2C3E50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .btn-back {
+            background-color: #3498db;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 25px;
+            margin-top: 30px;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="navbar-brand">C WASH</div>
+        <a href="/shp_home">Home</a>       
+        <a href="#">Booking Details</a>
+        <a href="/shp_logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    </div>
+
+    <h2>Booked Appointments</h2>
+
+    <!-- Table to display all appointments -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Service</th>
+                <th>Booking Date & Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.name }}</td>
+                    <td>{{ appointment.email }}</td>
+                    <td>{{ appointment.service }}</td>
+                    <td>{{ appointment.date|date:"F j, Y, g:i A" }}</td>
+                    <td>
+                        <!-- Delete button form -->
+                        <form action="{% url 'delete_bookings' appointment_id=appointment.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete Appointment</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No appointments found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Button to go back to the home page -->
+    <a href="/shp_home" class="btn-back">Back to Home</a>
+
+    
+</body>
+</html>
