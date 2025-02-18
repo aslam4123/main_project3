@@ -198,11 +198,18 @@
     
     <script>
         $(document).ready(function() {
-            $('#date').on('change', function() {
-                var selectedDate = $(this).val();
-                
-               
-            });
+            // Get the current date and time in the format required for datetime-local input
+            var currentDate = new Date();
+            var year = currentDate.getFullYear();
+            var month = ("0" + (currentDate.getMonth() + 1)).slice(-2); // Add leading zero if needed
+            var day = ("0" + currentDate.getDate()).slice(-2); // Add leading zero if needed
+            var hours = ("0" + currentDate.getHours()).slice(-2); // Add leading zero if needed
+            var minutes = ("0" + currentDate.getMinutes()).slice(-2); // Add leading zero if needed
+
+            var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
+
+            // Set the min attribute for the datetime-local input
+            $('#date').attr('min', formattedDate);
         });
     </script>
 

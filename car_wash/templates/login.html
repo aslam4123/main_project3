@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            background-image: url(../static/Audi2.jpg);
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -20,10 +20,10 @@
         .card {
             max-width: 400px;
             width: 100%;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.6);
         }
         .log{
             color: white;
@@ -69,11 +69,23 @@
             
             <div class="register-link">
                 <a href="{% url 'register' %}">Don't have an account? Register</a>
+                <br>
+                <a href="{% url 'password_reset' %}" class="btn-link">Forgot Password?</a>
+
 
 
             </div>
            
         </form>
     </div>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('passwd');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+        }
+    </script>
 </body>
 </html>
