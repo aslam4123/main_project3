@@ -7,12 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* General Body and Font Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f4f9;
-            padding: 50px;
-            margin-left: 250px;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Sidebar Styling */
         .sidebar {
             height: 100vh;
             width: 250px;
@@ -21,14 +24,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            padding-top: 20px;
+            padding-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
+        /* Sidebar Brand */
         .navbar-brand {
             font-size: 24px;
             font-weight: bold;
@@ -40,6 +45,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Sidebar Links */
         .sidebar a {
             text-decoration: none;
             color: #bdc3c7;
@@ -51,30 +57,56 @@
             border-bottom: 1px solid #34495e;
         }
 
+        /* Sidebar Links Hover Effect */
         .sidebar a:hover {
             background-color: #3498db;
             color: white;
             border-left: 4px solid #fff;
+            transform: translateX(10px); /* Added hover animation */
         }
 
+        /* Main Content Area Styling */
+        .container {
+            margin-left: 250px;
+            padding: 40px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Contact Form Styling */
         .contact-form {
             background-color: white;
             padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
             margin-top: 30px;
+            transition: all 0.3s ease-in-out;
         }
 
+        /* Contact Form Input Fields */
         .contact-form .form-group label {
             font-size: 1.1rem;
             color: #2C3E50;
         }
 
         .contact-form .form-control {
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
         }
 
+        .contact-form .form-control:focus {
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.6); /* Focus state */
+            border-color: #3498db;
+        }
+
+        /* Submit Button Styling */
         .btn-primary {
             background-color: #3498db;
             border: none;
@@ -86,14 +118,31 @@
             margin-top: 20px;
             display: block;
             width: 100%;
+            transition: all 0.3s ease;
         }
 
+        /* Submit Button Hover Effect */
         .btn-primary:hover {
             background-color: #2980b9;
+            transform: scale(1.05); /* Button hover animation */
+        }
+
+        /* Success Alert Styling */
+        .alert-success {
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-success p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="sidebar">
         <div class="navbar-brand">C WASH</div>
         <a href="#">Home</a>
@@ -105,9 +154,11 @@
         <a href="/shp_logout">Logout</a>
     </div>
 
+    <!-- Main Content -->
     <div class="container">
         <h2>Contact Us</h2>
 
+        <!-- Success Message -->
         {% if messages %}
         <div class="alert alert-success">
             {% for message in messages %}
@@ -116,6 +167,7 @@
         </div>
         {% endif %}
 
+        <!-- Contact Form -->
         <div class="contact-form">
             <form method="post">
                 {% csrf_token %}
@@ -124,6 +176,5 @@
             </form>
         </div>
     </div>
-
 </body>
 </html>
