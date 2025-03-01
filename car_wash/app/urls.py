@@ -27,6 +27,7 @@ urlpatterns = [
     
     # --------------------------user--------------------
     path('register/', views.register, name='register'),
+    path('verify_otp_reg',views.verify_otp_reg, name='verify_otp_reg'),
     path('user_home/', views.user_home, name='user_home'),
     path('services/', views.services, name='services'),
     path('book_appointment/', views.book_appointment, name='book_appointment'),
