@@ -18,7 +18,7 @@
         .sidebar {
             height: 100vh;
             width: 250px;
-            background-color: #2C3E50; /* Dark blue-gray */
+            background-color: #2C3E50;
             color: #fff;
             position: fixed;
             top: 0;
@@ -63,12 +63,6 @@
             background-color: #3498db;
             color: white;
             border-left: 4px solid #fff;
-        }
-
-        /* Add subtle hover effect on sidebar links */
-        .sidebar a:active {
-            background-color: #2980b9;
-            transform: translateX(5px);
         }
 
         .container {
@@ -139,7 +133,7 @@
 </head>
 <body>
 
-    <!-- Sidebar and content... -->
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="navbar-brand">C WASH</div>
         <a href="/user_home">Home</a>
@@ -151,6 +145,7 @@
         <a href="/shp_logout">Logout</a>
     </div>
 
+    <!-- Main Content -->
     <div class="container">
         <h2>Book Your Car Wash Appointment</h2>
 
@@ -167,11 +162,13 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <!-- Automatically fill name if user is logged in, make it readonly -->
+                    <input type="text" class="form-control" id="name" name="name" value="{{ user.get_full_name }}" readonly required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <!-- Automatically fill email if user is logged in, make it readonly -->
+                    <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" readonly required>
                 </div>
                 <div class="form-group">
                     <label for="service">Select Service</label>
@@ -215,3 +212,4 @@
 
 </body>
 </html>
+
